@@ -4,6 +4,7 @@ import { createStackNavigator, createBottomTabNavigator } from 'react-navigation
 
 import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
+import HistoryScreen from '../screens/HistoryScreen';
 import LinksScreen from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 
@@ -11,6 +12,29 @@ const config = Platform.select({
   web: { headerMode: 'screen' },
   default: {},
 });
+
+const HistoryStack = createStackNavigator(
+  {
+    History: HistoryScreen,
+  },
+  config
+);
+
+HistoryStack.navigationOptions = {
+  tabBarLabel: 'History',
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon
+      focused={focused}
+      name={
+        Platform.OS === 'ios'
+          ? `ios-information-circle${focused ? '' : '-outline'}`
+          : 'md-information-circle'
+      }
+    />
+  ),
+};
+
+HistoryStack.path = '';
 
 const HomeStack = createStackNavigator(
   {
@@ -71,6 +95,7 @@ const tabNavigator = createBottomTabNavigator({
   HomeStack,
   LinksStack,
   SettingsStack,
+  HistoryStack,
 });
 
 tabNavigator.path = '';
