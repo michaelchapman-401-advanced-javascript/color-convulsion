@@ -15,7 +15,7 @@ import { MonoText } from '../components/StyledText';
 export default function HomeScreen() {
   return (
     <View style={styles.container}>
-      <ScrollView
+      {/* <ScrollView
         style={styles.container}
         contentContainerStyle={styles.contentContainer}>
         <View style={styles.welcomeContainer}>
@@ -64,7 +64,7 @@ export default function HomeScreen() {
             navigation/MainTabNavigator.js
           </MonoText>
         </View>
-      </View>
+      </View> */}
     </View>
   );
 }
