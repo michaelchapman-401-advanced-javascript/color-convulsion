@@ -1,42 +1,26 @@
 
-import React,  { Component } from 'react';
+import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, Alert } from 'react-native';
 
-class FindMe extends Component {
-  state = {
-    latitude: null, 
-    longitude: null
-  };
+import { LocationContext } from './context/locationsContext';
 
-  findCurrentLocation = () =>{
-    navigator.geolocation.getCurrentPosition(
-      position => {
-        console.log(position);
-        const latitude = JSON.stringify(position.coords.latitude);
-        const longitude = JSON.stringify(position.coords.longitude);
-        console.log ('latitude: ',this.state.latitude);
-        console.log (this.state.longitude);
-
-        this.setState({
-          latitude,
-          longitude
-        });
-      },
-      { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
-    );
-  };
-
+export default class HomeScreen extends Component {
   render() {
     return (
-      <View>
-        <TouchableOpacity onPress={this.findCurrentLocation}>
-        <Text> Where am I? </Text>
-        <Text> {this.state.longitude} </Text>
-        <Text> {this.state.latitude} </Text>
-        </TouchableOpacity>
-      </View>
+      <LocationContext.Consumer>
+        {state => {
+          return (
+            <View>
+              <TouchableOpacity onPress={state.findCurrentLocation}>
+              <Text> Where am I? </Text>
+              <Text> {state.latitude} </Text>
+              <Text> {state.longitude} </Text>
+              </TouchableOpacity>
+            </View>
+          );
+        }}
+      </LocationContext.Consumer>
     );
   }
 }
 
-export default FindMe;
