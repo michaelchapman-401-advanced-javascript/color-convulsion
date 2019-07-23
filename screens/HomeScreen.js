@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity, Alert, StyleSheet } from 'react-native';
+import { View, Text, Vibration, TouchableOpacity, Alert, StyleSheet } from 'react-native';
 
 import { LocationContext } from './context/locationsContext';
 
@@ -11,7 +11,7 @@ export default class HomeScreen extends Component {
   }
 
   ChangeColorFunction = () => {
-
+    Vibration.vibrate();
     var ColorCode = 'rgb(' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ')';
     this.setState({
       ColorHolder: ColorCode
