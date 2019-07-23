@@ -1,6 +1,5 @@
-
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity, Alert } from 'react-native';
+import { View, Text, TouchableOpacity, Alert, StyleSheet } from 'react-native';
 
 import { LocationContext } from './context/locationsContext';
 
@@ -10,7 +9,7 @@ export default class HomeScreen extends Component {
       <LocationContext.Consumer>
         {state => {
           return (
-            <View>
+            <View style={styles.container}>
               <TouchableOpacity onPress={state.findCurrentLocation}>
               <Text> Where am I? </Text>
               <Text> {state.latitude} </Text>
@@ -23,4 +22,14 @@ export default class HomeScreen extends Component {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: 'lightblue',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+});
+
 
